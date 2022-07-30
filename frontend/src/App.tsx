@@ -1,14 +1,12 @@
 import './App.css'
-import Header from './Components/Header'
-import Home from './Pages/Home'
+import React from 'react';
+import Rotas from './routes';
 
 function App() {
 
   return (
-    <div>
-      <Header />
-      <Home />
-    </div>
+    <Rotas />
+
   );
 }
 
