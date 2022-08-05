@@ -22,7 +22,7 @@ const Charts = () => {
 
     useEffect(() => {
         async function getData() {
-            const recordsResponse = await axios.get(`${BASE_URL}/records`);
+            const recordsResponse = await axios.get(`${BASE_URL}/records?linesPerPage=400`);
             const gamesResponse = await axios.get(`${BASE_URL}/games`);
 
             const barChart = buildBarSeries(gamesResponse.data, recordsResponse.data.content);
@@ -49,7 +49,7 @@ const Charts = () => {
                         <Chart options={barOptions}
                             type='bar'
                             width='790'
-                            height='550'
+                            height='650'
                             series={[{ data: barChartData }]}
                         />
                     </div>
@@ -57,7 +57,20 @@ const Charts = () => {
                 <div className="charts">
                     <div className="platform-chart">
                         <h2 className="chart-title">Plataformas</h2>
-
+                        <Chart
+                            options={{ labels: platformData?.labels }}
+                            type="donut"
+                            series={platformData?.series}
+                        />
+                    </div>
+                    <div className="gender-chart">
+                        <h2 className="chart-title">Gêneros</h2>
+                        <Chart
+                            options={{ labels: genderData.labels }}
+                            type="donut"
+                            series={genderData.series}
+                            width='350'
+                        />
                     </div>
                 </div>
             </div>
