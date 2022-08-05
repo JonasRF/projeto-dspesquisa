@@ -22,7 +22,7 @@ const Charts = () => {
 
     useEffect(() => {
         async function getData() {
-            const recordsResponse = await axios.get(`${BASE_URL}/records?linesPerPage=400`);
+            const recordsResponse = await axios.get(`${BASE_URL}/records`);
             const gamesResponse = await axios.get(`${BASE_URL}/games`);
 
             const barChart = buildBarSeries(gamesResponse.data, recordsResponse.data.content);
@@ -46,7 +46,8 @@ const Charts = () => {
                         Jogos mais votados
                     </h1>
                     <div className="games-container">
-                        <Chart options={barOptions}
+                        <Chart
+                            options={barOptions}
                             type='bar'
                             width='790'
                             height='650'
@@ -60,6 +61,7 @@ const Charts = () => {
                         <Chart
                             options={{ labels: platformData?.labels }}
                             type="donut"
+                            width='350'
                             series={platformData?.series}
                         />
                     </div>
