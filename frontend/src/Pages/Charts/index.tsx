@@ -57,21 +57,7 @@ const Charts = () => {
                 <div className="charts">
                     <div className="platform-chart">
                         <h2 className="chart-title">Plataformas</h2>
-                        <Chart
-                            options={{ ...pieOptions, labels: platformData?.labels }}
-                            type="donut"
-                            series={platformData?.series}
 
-                        />
-                    </div>
-                    <div className="gender-chart">
-                        <h2 className="chart-title">Gêneros</h2>
-                        <Chart
-                            options={{ ...pieOptions, labels: genderData.labels }}
-                            type="donut"
-                            series={genderData.series}
-                            width='350'
-                        />
                     </div>
                 </div>
             </div>
