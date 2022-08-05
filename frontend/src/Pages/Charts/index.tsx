@@ -48,8 +48,8 @@ const Charts = () => {
                     <div className="games-container">
                         <Chart options={barOptions}
                             type='bar'
-                            width='900'
-                            height='650'
+                            width='790'
+                            height='550'
                             series={[{ data: barChartData }]}
                         />
                     </div>
