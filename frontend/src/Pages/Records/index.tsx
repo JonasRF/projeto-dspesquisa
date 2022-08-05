@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BodyRecords from '../../Components/BodyRecords';
+import Filters from '../../Components/Filters';
 import Pagination from '../../Components/Pagination';
 import { formatDate } from '../../helpers';
 import { RecordsResponse } from '../../types';
+import { BASE_URL } from '../../util/requests';
 import './styles.css';
-
-const BASE_URL = 'https://deploy-apppesquisa.herokuapp.com';
 
 const Records = () => {
 
@@ -24,13 +25,7 @@ const Records = () => {
 
     return (
         <div className='page-container'>
-            <div className='filters-container records-actions'>
-                <Link to='/charts'>
-                    <button className='action-filters'>
-                        VER GRÁFICOS
-                    </button>
-                </Link>
-            </div>
+            <Filters link='/charts' linkText='VER GRÁFICO' />
             <table className='records-table' cellPadding='0' cellSpacing='0'>
                 <thead>
                     <tr>
@@ -45,14 +40,7 @@ const Records = () => {
                 <tbody>
                     {
                         recordsResponse?.content.map(record => (
-                            <tr key={record.id}>
-                                <td>{formatDate(record.moment)}</td>
-                                <td>{record.name}</td>
-                                <td>{record.age}</td>
-                                <td className='text-secondary'>{record.gamePlatform}</td>
-                                <td>{record.genreName}</td>
-                                <td>{record.gameTitle}</td>
-                            </tr>
+                            <BodyRecords record={record} />
                         ))}
                 </tbody>
             </table>

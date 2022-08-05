@@ -13,4 +13,25 @@ export type RecordItem = {
     genreName: string;
 }
 
-export type Platform = 'XBOX' | 'PC' | 'PLASTATION';
+export type Game = {
+    id: number;
+    title: string;
+    platform: Platform;
+}
+
+export type ChartItem = {
+    x: string;
+    y: number;
+}
+
+export type PieChartData = {
+    labels: string[];
+    series: number[];
+}
+
+export type BarChartData = {
+    x: string;
+    y: number;
+}
+
+export type Platform = "PC" | "PLAYSTATION" | "XBOX";
