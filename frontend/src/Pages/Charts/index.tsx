@@ -3,11 +3,11 @@ import Filters from "../../Components/Filters";
 import Chart from 'react-apexcharts';
 import { barOptions, pieOptions } from './chart-options';
 import { BarChartData, PieChartData } from "../../types";
-
-import './styles.css';
 import axios from "axios";
 import { BASE_URL } from "../../util/requests";
 import { buildBarSeries, getGenderChartData, getPlatformChartData } from "./helpers";
+
+import './styles.css';
 
 const initialPieData = {
     labels: [],
@@ -46,10 +46,11 @@ const Charts = () => {
                         Jogos mais votados
                     </h1>
                     <div className="games-container">
-                        <Chart options={barOptions}
+                        <Chart
+                            options={barOptions}
                             type='bar'
                             width='790'
-                            height='550'
+                            height='650'
                             series={[{ data: barChartData }]}
                         />
                     </div>
@@ -57,7 +58,21 @@ const Charts = () => {
                 <div className="charts">
                     <div className="platform-chart">
                         <h2 className="chart-title">Plataformas</h2>
-
+                        <Chart
+                            options={{ labels: platformData?.labels }}
+                            type="donut"
+                            width='350'
+                            series={platformData?.series}
+                        />
+                    </div>
+                    <div className="gender-chart">
+                        <h2 className="chart-title">Gêneros</h2>
+                        <Chart
+                            options={{ labels: genderData.labels }}
+                            type="donut"
+                            series={genderData.series}
+                            width='350'
+                        />
                     </div>
                 </div>
             </div>
