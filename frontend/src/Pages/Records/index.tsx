@@ -7,17 +7,30 @@ import Pagination from '../../Components/Pagination';
 import { formatDate } from '../../helpers';
 import { RecordsResponse } from '../../types';
 import { BASE_URL } from '../../util/requests';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import './styles.css';
 
 const Records = () => {
+
+    const min = new Date(new Date().setDate(new Date().getDate() - 830));
+    const max = new Date();
+
+    const [minDate, setMinDate] = useState(min);
+    const [maxDate, setMaxDate] = useState(max);
 
     const [recordsResponse, setRecordsResponse] = useState<RecordsResponse>();
     const [activePage, setActivePages] = useState(0);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/records?linesPerPage=12&page=${activePage}`)
+
+        const dmin = minDate.toISOString();
+        const dmax = maxDate.toISOString();
+
+        axios.get(`${BASE_URL}/records?min=${dmin}&max=${dmax}&page=${activePage}`)
             .then((response) => setRecordsResponse(response.data));
-    }, [activePage]);
+    }, [minDate, maxDate, activePage]);
 
     const handlePageChange = (index: number) => {
         setActivePages(index)
@@ -25,7 +38,29 @@ const Records = () => {
 
     return (
         <div className='page-container'>
-            <Filters link='/charts' linkText='VER GRÁFICO' />
+            <div className='filters-container records-filters'>
+                <div className="dspesquisa-form-control-container">
+                    <DatePicker
+                        selected={minDate}
+                        onChange={(date: Date) => setMinDate(date)}
+                        className="dsmeta-form-control"
+                        dateFormat="dd/MM/yyyy"
+                    />
+                </div>
+                <div className="dspesquisa-form-control-container01">
+                    <DatePicker
+                        selected={maxDate}
+                        onChange={(date: Date) => setMaxDate(date)}
+                        className="dsmeta-form-control"
+                        dateFormat="dd/MM/yyyy"
+                    />
+                </div>
+                <Link to='/charts'>
+                    <button className='action-filters'>
+                        VER GRÁFICO
+                    </button>
+                </Link>
+            </div>
             <table className='records-table' cellPadding='0' cellSpacing='0'>
                 <thead>
                     <tr>

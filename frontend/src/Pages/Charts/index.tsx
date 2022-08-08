@@ -3,11 +3,11 @@ import Filters from "../../Components/Filters";
 import Chart from 'react-apexcharts';
 import { barOptions, pieOptions } from './chart-options';
 import { BarChartData, PieChartData } from "../../types";
-
-import './styles.css';
 import axios from "axios";
 import { BASE_URL } from "../../util/requests";
 import { buildBarSeries, getGenderChartData, getPlatformChartData } from "./helpers";
+
+import './styles.css';
 
 const initialPieData = {
     labels: [],
