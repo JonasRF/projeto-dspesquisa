@@ -1,6 +1,8 @@
 package com.devsuperior.dspesquisa.services;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,6 +45,4 @@ public class RecordService {
 	public Page<RecordDTO> findByMoments(Instant minDate, Instant maxDate, PageRequest pageRequest) {
 	return repository.findByMoments(minDate, maxDate, pageRequest).map(x -> new RecordDTO(x));
 	}
-	
-	
 }
