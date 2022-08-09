@@ -22,7 +22,7 @@ const Charts = () => {
 
     useEffect(() => {
         async function getData() {
-            const recordsResponse = await axios.get(`${BASE_URL}/records?linesPerPage=60`);
+            const recordsResponse = await axios.get(`${BASE_URL}/records`);
             const gamesResponse = await axios.get(`${BASE_URL}/games`);
 
             const barChart = buildBarSeries(gamesResponse.data, recordsResponse.data.content);
