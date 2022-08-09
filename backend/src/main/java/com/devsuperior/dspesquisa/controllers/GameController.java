@@ -18,7 +18,6 @@ public class GameController {
 	@Autowired
 	private GameService gameService;
 
-	
 	@GetMapping
 	public ResponseEntity<List<GameDTO>> findAll() {
 		List<GameDTO> list = gameService.findAll();
